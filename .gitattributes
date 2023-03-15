@@ -10,3 +10,14 @@ FAT_WAK_data/umindlite/UmindLite_09_WAK.txt filter=lfs diff=lfs merge=lfs -text
 FAT_WAK_data/umindlite/UmindLite_10_FAT.txt filter=lfs diff=lfs merge=lfs -text
 FAT_WAK_data/umindlite/UmindLite_10_WAK.txt filter=lfs diff=lfs merge=lfs -text
 FAT_WAK_data/umindlite/ filter=lfs diff=lfs merge=lfs -text
+FAT_WAK_data/brainlink/ filter=lfs diff=lfs merge=lfs -text
+FAT_WAK_data/brainlink/BrainLinkRaw_01_FAT.txt filter=lfs diff=lfs merge=lfs -text
+FAT_WAK_data/brainlink/BrainLinkRaw_01_WAK.txt filter=lfs diff=lfs merge=lfs -text
+FAT_WAK_data/brainlink/BrainLinkRaw_03_WAK.txt filter=lfs diff=lfs merge=lfs -text
+FAT_WAK_data/brainlink/BrainLinkRaw_05_FAT.txt filter=lfs diff=lfs merge=lfs -text
+FAT_WAK_data/brainlink/BrainLinkRaw_02_FAT.txt filter=lfs diff=lfs merge=lfs -text
+FAT_WAK_data/brainlink/BrainLinkRaw_02_WAK.txt filter=lfs diff=lfs merge=lfs -text
+FAT_WAK_data/brainlink/BrainLinkRaw_03_FAT.txt filter=lfs diff=lfs merge=lfs -text
+FAT_WAK_data/brainlink/BrainLinkRaw_04_FAT.txt filter=lfs diff=lfs merge=lfs -text
+FAT_WAK_data/brainlink/BrainLinkRaw_04_WAK.txt filter=lfs diff=lfs merge=lfs -text
+FAT_WAK_data/brainlink/BrainLinkRaw_05_WAK.txt filter=lfs diff=lfs merge=lfs -text
