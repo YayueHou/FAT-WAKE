@@ -1,0 +1,12 @@
+FAT_WAK_data/umindlite/UmindLite_01_WAK.txt filter=lfs diff=lfs merge=lfs -text
+FAT_WAK_data/umindlite/UmindLite_02_FAT.txt filter=lfs diff=lfs merge=lfs -text
+FAT_WAK_data/umindlite/UmindLite_02_WAK.txt filter=lfs diff=lfs merge=lfs -text
+FAT_WAK_data/umindlite/UmindLite_06_FAT.txt filter=lfs diff=lfs merge=lfs -text
+FAT_WAK_data/umindlite/UmindLite_11_FAT.txt filter=lfs diff=lfs merge=lfs -text
+FAT_WAK_data/umindlite/UmindLite_01_FAT.txt filter=lfs diff=lfs merge=lfs -text
+FAT_WAK_data/umindlite/UmindLite_06_WAK.txt filter=lfs diff=lfs merge=lfs -text
+FAT_WAK_data/umindlite/UmindLite_09_FAT.txt filter=lfs diff=lfs merge=lfs -text
+FAT_WAK_data/umindlite/UmindLite_09_WAK.txt filter=lfs diff=lfs merge=lfs -text
+FAT_WAK_data/umindlite/UmindLite_10_FAT.txt filter=lfs diff=lfs merge=lfs -text
+FAT_WAK_data/umindlite/UmindLite_10_WAK.txt filter=lfs diff=lfs merge=lfs -text
+FAT_WAK_data/umindlite/ filter=lfs diff=lfs merge=lfs -text
