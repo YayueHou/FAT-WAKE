@@ -17,4 +17,9 @@ This dataset is used to study the commercial EEG wearable devices and their abil
 * Our annotations are in `annotation`
 * the methods to connect to devices are in `DeviceConnect`
 * This dataset is also used to teach students in Tongji University, so you may find some tutorial comments.
-
+## Usage
+* Notice: the data are stored using lfs, so when clone please use
+```
+git lfs clone https://github.com/YayueHou/FAT-WAKE.git
+```
+* We could not promise that data download directly by `Download ZIP` is complete  
