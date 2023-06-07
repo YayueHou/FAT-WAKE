@@ -23,26 +23,25 @@ def FW_classby_SVM(feature_data,KSS_annotation,leave_oneout=0):
     if(leave_oneout):
         loo =  LeaveOneOut()
         loo.get_n_splits(x)
-        index = 0
         for i,(train_index, test_index) in enumerate(loo.split(x)):
             train_X= x[train_index]
             train_y =y[train_index]
             test_X, test_y = x[test_index], y[test_index]
-            regr = make_pipeline(StandardScaler(), SVC())
-            regr.fit(train_X, train_y)
-            y_pred = regr.predict(test_X)
+            svm = make_pipeline(StandardScaler(), SVC())
+            svm.fit(train_X, train_y)
+            y_pred = svm.predict(test_X)
             acc.append(accuracy_score(test_y, y_pred))
         acc=numpy.array(acc)
         print("SVM leave one out average_acc:", numpy.mean(acc), "std_acc:", numpy.std(acc))
     else:
-        kf = RepeatedKFold(n_splits=10, n_repeats=2)
-        for i,(train_index, test_index) in enumerate(kf.split(x)):
+        loo = RepeatedKFold(n_splits=10, n_repeats=2)
+        for i,(train_index, test_index) in enumerate(loo.split(x)):
             train_X= x[train_index]
             train_y =y[train_index]
             test_X, test_y = x[test_index], y[test_index]
-            regr = make_pipeline(StandardScaler(), SVC())
-            regr.fit(train_X, train_y)
-            y_pred = regr.predict(test_X)
+            svm = make_pipeline(StandardScaler(), SVC())
+            svm.fit(train_X, train_y)
+            y_pred = svm.predict(test_X)
             acc.append(accuracy_score(test_y, y_pred)) 
         acc=numpy.array(acc)
         print("SVM average_acc:", numpy.mean(acc), "std_acc:", numpy.std(acc))
