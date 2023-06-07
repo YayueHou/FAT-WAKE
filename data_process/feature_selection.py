@@ -1,23 +1,17 @@
 # ANOVA feature selection for numeric input and categorical output
 
 import numpy
-import wavelet_entropy as waen
-from scipy import signal 
 import pandas as pd
 import matplotlib.pyplot as plt
 import preprocess as pre
-import thesis_plot as tpl
 import seaborn as sns
 import EEGFileList as eeg
 import FW_Class_SVM_KNN as fwcls
-from sklearn.datasets import make_classification
 from sklearn.feature_selection import SelectKBest
 from sklearn.feature_selection import f_classif
 
 myblue="#003A6F"
-#myblue="dark blue"
 myred="#8B220D"
-#myred="dark red"
 myyellow="#C89C0E"
 myorange="#994E0D"
 mygreen="#336633"
@@ -62,12 +56,12 @@ def get_selected_frame(initial_data,KSS_annotation,feature_name,select_func,scor
 
 def class_selected_feature(feature_selection, initial_data,KSS_annotation, device_name):
    selected_data=feature_selection.transform(initial_data)
-   KNN_acc,KNN_std=fwcls.FW_classby_KNN(selected_data, KSS_annotation)
-   SVM_acc,SVM_std=fwcls.FW_classby_SVM(selected_data, KSS_annotation)
-   print(device_name," SVM acc after selection: ", SVM_acc)
-   print(device_name," SVM std after selection: ", SVM_std)
-   print(device_name," KNN acc after selection: ", KNN_acc)
-   print(device_name," KNN std after selection: ", KNN_std)
+   KNN_acc=fwcls.FW_classby_KNN(selected_data, KSS_annotation)
+   SVM_acc=fwcls.FW_classby_SVM(selected_data, KSS_annotation)
+   print(device_name," SVM acc after selection: ", SVM_acc.mean())
+   print(device_name," SVM std after selection: ", SVM_acc.std())
+   print(device_name," KNN acc after selection: ", KNN_acc.mean())
+   print(device_name," KNN std after selection: ", KNN_acc.std())
    print('---------------------------------------------')
 
 
