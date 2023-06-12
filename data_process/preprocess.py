@@ -46,37 +46,49 @@ def normalizelist(x):
     y=(x-min(x))/arange
     return y
 
-
 # get 24 features for data in a file list
 def GetFeature(file_list,x1,x2,kval,delta,theta, alpha, beta, gamma, fi, KSS,WE,RE2,RE3,TsE,GenTsE,RWE,sample_rate=None,device=None,device_name=None):
     for file in file_list:
+        print(file)
         if(file_list==flist.FATIGUE_EM or file_list==flist.WAKE_EM):
             src = read_csv(file)
             EEG = (src["EEG.F3"] +src["EEG.F4"])/2.0
-            filtered_data=numpy.zeros(sample_rate*5)
+            # print("111",EEG.shape)
+            # Resample the EEG signal of EMOTIV to 256Hz
+            EEG = signal.resample(EEG, len(EEG)*2)
+            # print("111",EEG.shape)
+            # Refresh the Sample rate 
+            sample_rate=256
+
         elif(file_list==flist.FATIGUE_UL or file_list==flist.WAKE_UL):
-            filtered_data=numpy.zeros(sample_rate*5)
             src = read_csv(file)
+            # Reshape the EEG signal array of UmindLite 
             EEG = [src['C1'],src['C2'],src['C3'],src['C4']]
             EEG=numpy.reshape(numpy.array(EEG),4*len(EEG[0]))
         else:
-            filtered_data=numpy.zeros(sample_rate*5)
             EEG = numpy.loadtxt(file)
+        
+        filtered_data=numpy.zeros(sample_rate*5)
+
+        # Cut Raw Signal to 5s pieces
         for i in range(x1,x2):
             eegdata=EEG[i*sample_rate*5:(i+1)*sample_rate*5]
             # print(eegdata.shape)
             eegdata=standardize(eegdata)
+            #eegdata=normalize(eegdata)
             # print(eegdata.mean())
             filtered_data=Notch_filter(eegdata,sample_rate)
-
+            # Filter signal to only have the information of 0-128Hz 
             if(sample_rate==512):
                 b, a = signal.butter(8, 0.5, 'lowpass')  
-                filtered_data = signal.filtfilt(b, a, filtered_data)  
+                filtered_data = signal.filtfilt(b, a, filtered_data) 
             # else:
             #   b, a = signal.butter(8, 0.5, 'lowpass')   
             #   filtered_data = signal.filtfilt(b, a, filtered_data)  
             #   b, a = signal.butter(8, [0.004,0.5], 'bandpass')   
             #   filtered_data = signal.filtfilt(b, a, filtered_data)  
+
+            # Get Entropy and RWE
             we,re2,re3,tse,gentse,Pi=waen.WE(filtered_data)
             RWE.append(Pi)
             WE.append(we)
@@ -87,6 +99,7 @@ def GetFeature(file_list,x1,x2,kval,delta,theta, alpha, beta, gamma, fi, KSS,WE,
             if(device_name!=None):
                 device.append(device_name)
 
+            # Get FFT in range 0-128Hz
             sig_fft,freq_fft=FFT_ham(filtered_data,sample_rate)
             eeg_power=numpy.abs(sig_fft)**2
             eeg=eeg_power[:int(sample_rate*5/2)]
