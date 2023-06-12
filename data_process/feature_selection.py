@@ -10,12 +10,13 @@ import FW_Class_SVM_KNN as fwcls
 from sklearn.feature_selection import SelectKBest
 from sklearn.feature_selection import f_classif
 
-myblue="#003A6F"
-myred="#8B220D"
+myblue="#4B33FF"
+#myblue="dark blue"
+myred="#F24400"
+#myred="dark red"
 myyellow="#C89C0E"
 myorange="#994E0D"
-mygreen="#336633"
-
+mygreen="#03AC0F"
 
 # Use the following global variable to control
 FW_TGAM_FRONT=0 # Print feature selection result of TGAM fronthead data
@@ -26,11 +27,11 @@ FW_OPEN=0       # Print feature selection result of all open eyes data
 FW_ALL=0        # Print feature selection result of all data
 FW_CLASS=1      # Print classification result of SVM and KNN after feature selection
 FW_PLOT=1       # Plot feature score comparation
-FEATURE_NUM=24  # features numbers to select
+FEATURE_NUM=8  # features numbers to select
 #SELECT_FUNCTION=mutual_info_classif
 SELECT_FUNCTION=f_classif
-#SCORE_NAME='F Score'
-SCORE_NAME='Mutual Info'
+SCORE_NAME='F Score'
+#SCORE_NAME='Mutual Info'
 
 
 
@@ -45,7 +46,8 @@ Device=[]
 def get_selected_frame(initial_data,KSS_annotation,feature_name,select_func,score_name,Hue_data,Hue_txt):
    fs = SelectKBest(score_func=select_func, k=FEATURE_NUM)
    fs=fs.fit(initial_data, KSS_annotation)
-   feature_scores=pd.DataFrame(pre.normalize(fs.scores_))
+   #feature_scores=pd.DataFrame(pre.normalize(fs.scores_))
+   feature_scores=pd.DataFrame((fs.scores_))
    #feature_p=pd.DataFrame(Fscore.pvalues_)
    Hue_data=pd.DataFrame(Hue_data)
    scores_frame=pd.concat([feature_name,feature_scores,Hue_data],axis=1)
@@ -267,10 +269,10 @@ if(FW_ALL):
 if(FW_PLOT and FW_ALL):
    features=pd.concat([open_frame,close_frame,all_frame],axis=0)
    features.columns = ['Feature','Normalized '+SCORE_NAME,'Eyes State']
-   sns.set_theme(style="white",font={'serif':'Times New Roman'},font_scale=1.2)
-   plt.figure(figsize=(16,3.5))
-   plt.xticks(size=14)
-   plt.yticks(size=14)
+   sns.set_theme(style="white",font={'serif':'Times New Roman'},font_scale=1.5)
+   plt.figure(figsize=(16,4))
+   plt.xticks(size=15)
+   plt.yticks(size=15)
    #plt.xlabel('Feature',size=16)
    #plt.ylabel( 'F Score',size=16)
    sns.barplot(x="Feature", y="Normalized "+SCORE_NAME, hue="Eyes State", data=features,palette=[myblue,myred,mygreen],errorbar=None)
