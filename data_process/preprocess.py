@@ -6,17 +6,23 @@ from scipy import signal
 import pandas as pd
 from pandas import read_csv
 
+"""
+Read txt datafiles: 
+    cut the data into 5s/peice. The data is totally aroundd 14min long. 
+    Consisit of 1min relax, 4min open eyes, 1min relax, 4min close eyes, 1min relax, 4min open eyes.
+    use the signal between 2min-4min and 6.5min-8.5min
+"""
 
 # filter the data at 50Hz
 def Notch_filter(sig_data,sample_rate):
-  fr=50
-  fs=sample_rate
-  Q=10
-  b,a = signal.iirnotch(fr,Q,fs)
-  filted_data=scipy.signal.filtfilt(b,a,sig_data)
-  b, a = signal.butter(8, [0.004,0.86], 'bandpass')   
-  filtedData = signal.filtfilt(b, a, filted_data)  
-  return filtedData
+    fr=50
+    fs=sample_rate
+    Q=10
+    b,a = signal.iirnotch(fr,Q,fs)
+    filted_data=scipy.signal.filtfilt(b,a,sig_data)
+    b, a = signal.butter(8, [0.004,0.86], 'bandpass')   
+    filtedData = signal.filtfilt(b, a, filted_data)  
+    return filtedData
 
 
 # FFT with a hamming window
