@@ -14,11 +14,11 @@ def WE(sig, wavelet = 'db4'):
     a6,d5,d4,d3,d2,d1=coeffs
   
     #This is to remove artifects
-    d1=pywt.threshold(d1, np.mean(d1), mode='soft', substitute=0)
-    d2=pywt.threshold(d2, np.mean(d2), mode='soft', substitute=0)
-    d3=pywt.threshold(d3, np.mean(d3), mode='soft', substitute=0)
-    d4=pywt.threshold(d4, np.mean(d4), mode='soft', substitute=0)
-    d5=pywt.threshold(d5, np.mean(d5), mode='soft', substitute=0)
+    #d1=pywt.threshold(d1, np.mean(d1), mode='soft', substitute=0)
+    #d2=pywt.threshold(d2, np.mean(d2), mode='soft', substitute=0)
+    #d3=pywt.threshold(d3, np.mean(d3), mode='soft', substitute=0)
+    #d4=pywt.threshold(d4, np.mean(d4), mode='soft', substitute=0)
+    #d5=pywt.threshold(d5, np.mean(d5), mode='soft', substitute=0)
 
   #  This is the reconstruction process 
   #  print("-----------------------")
