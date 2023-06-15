@@ -45,8 +45,6 @@ def FW_classby_SVM(feature_data,KSS_annotation,leave_oneout=0):
             acc.append(accuracy_score(test_y, y_pred)) 
         acc=numpy.array(acc)
         #print("SVM average_acc:", numpy.mean(acc), "std_acc:", numpy.std(acc))
-    #average_acc=numpy.mean(acc)
-    #acc_std=numpy.std(acc)
     return acc
 
 
@@ -57,11 +55,9 @@ def FW_classby_SVM(feature_data,KSS_annotation,leave_oneout=0):
 def FW_classby_KNN(feature_data,KSS_annotation): 
     x=feature_data
     y=KSS_annotation
-    print(x.shape)
+ #   print(x.shape)
     k_range = range(1,100)
     k_error = []
-    average_acc = 0.0
-    acc_std = 0.0
     for k in k_range:
         knn = KNeighborsClassifier(n_neighbors=k)
         scores = cross_val_score(knn, x, y, cv=10, scoring='accuracy')
@@ -69,8 +65,6 @@ def FW_classby_KNN(feature_data,KSS_annotation):
     k_min=k_error.index(min(k_error))+1
     knn = KNeighborsClassifier(n_neighbors=k_min)
     scores = cross_val_score(knn, x, y, cv=10, scoring='accuracy')
-    #average_acc=scores.mean()
-    #acc_std=scores.std()
     #print("KNN acc:",scores.mean(),"acc_std",scores.std())
     return scores
 
