@@ -82,7 +82,7 @@ def FW_classby_CNN(net,x,y):
     optimizer = torch.optim.Adam(net.parameters(), lr=0.001)
     # optimizer = torch.optim.SGD(net.parameters(), lr=0.001)
 
-    epochs = 100
+    epochs = 200
     loss_train = []
     for epoch in range(epochs):
       net.train()
